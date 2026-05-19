@@ -1,0 +1,260 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "User",
+      "age": 25,
+      "email": "user@lifeos.app",
+      "photo": "",
+      "level": 7,
+      "experience": 450,
+      "experienceToNextLevel": 1000,
+      "createdAt": "2026-01-15T08:00:00Z",
+      "updatedAt": "2026-05-19T10:30:00Z"
+    }
+  ],
+
+  "tasks": [
+    {
+      "id": "t1",
+      "userId": "u1",
+      "title": "Review pull request",
+      "description": "Review the new feature PR from the team",
+      "completed": false,
+      "priority": "high",
+      "experience": 50,
+      "dueDate": "2026-05-19",
+      "category": "work",
+      "createdAt": "2026-05-18T14:00:00Z",
+      "updatedAt": "2026-05-19T08:00:00Z"
+    },
+    {
+      "id": "t2",
+      "userId": "u1",
+      "title": "Update documentation",
+      "description": "",
+      "completed": false,
+      "priority": "medium",
+      "experience": 30,
+      "dueDate": "2026-05-20",
+      "category": "work",
+      "createdAt": "2026-05-17T09:00:00Z",
+      "updatedAt": "2026-05-17T09:00:00Z"
+    },
+    {
+      "id": "t3",
+      "userId": "u1",
+      "title": "Fix login bug",
+      "description": "Users cannot login with Google OAuth",
+      "completed": true,
+      "priority": "high",
+      "experience": 80,
+      "dueDate": "2026-05-18",
+      "category": "bug",
+      "createdAt": "2026-05-16T11:00:00Z",
+      "updatedAt": "2026-05-18T16:30:00Z"
+    },
+    {
+      "id": "t4",
+      "userId": "u1",
+      "title": "Write unit tests",
+      "description": "",
+      "completed": false,
+      "priority": "low",
+      "experience": 20,
+      "dueDate": "2026-05-22",
+      "category": "work",
+      "createdAt": "2026-05-18T10:00:00Z",
+      "updatedAt": "2026-05-18T10:00:00Z"
+    },
+    {
+      "id": "t5",
+      "userId": "u1",
+      "title": "Refactor API client",
+      "description": "Extract reusable API client from dashboard service",
+      "completed": false,
+      "priority": "high",
+      "experience": 60,
+      "dueDate": "2026-05-19",
+      "category": "work",
+      "createdAt": "2026-05-15T08:00:00Z",
+      "updatedAt": "2026-05-19T09:00:00Z"
+    },
+    {
+      "id": "t6",
+      "userId": "u1",
+      "title": "Buy groceries",
+      "description": "Milk, eggs, bread, vegetables",
+      "completed": false,
+      "priority": "medium",
+      "experience": 10,
+      "dueDate": "2026-05-19",
+      "category": "personal",
+      "createdAt": "2026-05-19T07:00:00Z",
+      "updatedAt": "2026-05-19T07:00:00Z"
+    }
+  ],
+
+  "habits": [
+    {
+      "id": "h1",
+      "userId": "u1",
+      "title": "Morning meditation",
+      "description": "Start the day with 10 minutes of mindfulness",
+      "completed": true,
+      "icon": "🧘",
+      "streak": 12,
+      "bestStreak": 30,
+      "experience": 25,
+      "frequency": "daily",
+      "timeOfDay": "morning",
+      "createdAt": "2026-01-20T08:00:00Z"
+    },
+    {
+      "id": "h2",
+      "userId": "u1",
+      "title": "Read 30 minutes",
+      "description": "Read a book or article for personal growth",
+      "completed": false,
+      "icon": "📖",
+      "streak": 5,
+      "bestStreak": 20,
+      "experience": 20,
+      "frequency": "daily",
+      "timeOfDay": "evening",
+      "createdAt": "2026-02-01T08:00:00Z"
+    },
+    {
+      "id": "h3",
+      "userId": "u1",
+      "title": "Exercise",
+      "description": "Physical activity for health and energy",
+      "completed": false,
+      "icon": "🏋️",
+      "streak": 8,
+      "bestStreak": 45,
+      "experience": 30,
+      "frequency": "daily",
+      "timeOfDay": "afternoon",
+      "createdAt": "2026-03-10T08:00:00Z"
+    },
+    {
+      "id": "h4",
+      "userId": "u1",
+      "title": "Drink 8 glasses of water",
+      "description": "Stay hydrated throughout the day",
+      "completed": true,
+      "icon": "💧",
+      "streak": 15,
+      "bestStreak": 50,
+      "experience": 15,
+      "frequency": "daily",
+      "timeOfDay": "all_day",
+      "createdAt": "2026-01-15T08:00:00Z"
+    },
+    {
+      "id": "h5",
+      "userId": "u1",
+      "title": "Write journal",
+      "description": "Reflect on the day and track progress",
+      "completed": false,
+      "icon": "✍️",
+      "streak": 3,
+      "bestStreak": 10,
+      "experience": 20,
+      "frequency": "daily",
+      "timeOfDay": "evening",
+      "createdAt": "2026-04-01T08:00:00Z"
+    }
+  ],
+
+  "timeBlocks": [
+    {
+      "id": "tb1",
+      "userId": "u1",
+      "date": "2026-05-19",
+      "start": "08:00",
+      "end": "09:00",
+      "title": "Morning review",
+      "description": "Review emails and plan the day",
+      "category": "planning",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "tb2",
+      "userId": "u1",
+      "date": "2026-05-19",
+      "start": "09:00",
+      "end": "10:30",
+      "title": "Feature work",
+      "description": "Implement user dashboard",
+      "category": "deep_work",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "tb3",
+      "userId": "u1",
+      "date": "2026-05-19",
+      "start": "11:00",
+      "end": "12:00",
+      "title": "Team sync",
+      "description": "Weekly team meeting",
+      "category": "meeting",
+      "color": "#f59e0b"
+    },
+    {
+      "id": "tb4",
+      "userId": "u1",
+      "date": "2026-05-19",
+      "start": "14:00",
+      "end": "15:30",
+      "title": "Deep work",
+      "description": "Focus time — no interruptions",
+      "category": "deep_work",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "tb5",
+      "userId": "u1",
+      "date": "2026-05-19",
+      "start": "16:00",
+      "end": "17:00",
+      "title": "Code review",
+      "description": "Review open PRs",
+      "category": "work",
+      "color": "#10b981"
+    }
+  ],
+
+  "metrics": {
+    "userId": "u1",
+    "level": {
+      "current": 7,
+      "experience": 450,
+      "experienceToNextLevel": 1000,
+      "totalExperienceEarned": 3200
+    },
+    "tasks": {
+      "total": 6,
+      "completed": 1,
+      "pending": 5,
+      "todayCompleted": 0,
+      "streak": 0
+    },
+    "habits": {
+      "total": 5,
+      "todayCompleted": 2,
+      "longestStreak": 50,
+      "currentStreak": 15
+    }
+  },
+
+  "categories": [
+    { "id": "work", "name": "Work", "color": "#3b82f6" },
+    { "id": "personal", "name": "Personal", "color": "#10b981" },
+    { "id": "bug", "name": "Bug", "color": "#ef4444" },
+    { "id": "deep_work", "name": "Deep Work", "color": "#8b5cf6" },
+    { "id": "meeting", "name": "Meeting", "color": "#f59e0b" },
+    { "id": "planning", "name": "Planning", "color": "#06b6d4" }
+  ]
+}
