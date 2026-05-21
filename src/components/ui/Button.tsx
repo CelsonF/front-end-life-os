@@ -8,7 +8,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
 }
 
-const variantClasses: Record<ButtonVariant, string> = {
+const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   primary:
     'bg-primary text-on-primary border-primary hover:brightness-110 hover:shadow-md',
   gradient:
@@ -31,7 +31,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg border cursor-pointer transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50 disabled:pointer-events-none ${variantClasses[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg border cursor-pointer transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50 disabled:pointer-events-none ${VARIANT_CLASSES[variant]} ${className}`}
       disabled={disabled || loading}
       {...props}
     >

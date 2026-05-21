@@ -42,6 +42,9 @@
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
 
+  --sidebar-width-expanded: 260px;
+  --sidebar-width-collapsed: 60px;
+
   --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --font-size-sm: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
   --font-size-base: clamp(0.9375rem, 0.875rem + 0.25vw, 1.0625rem);
@@ -137,4 +140,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.glass-sidebar {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
 }

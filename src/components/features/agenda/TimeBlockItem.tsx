@@ -9,7 +9,14 @@ interface TimeBlockItemProps {
   onDelete: (id: string) => void;
 }
 
-export function TimeBlockItem({ id, title, start, end, color, onDelete }: TimeBlockItemProps) {
+export function TimeBlockItem({
+  id,
+  title,
+  start,
+  end,
+  color,
+  onDelete,
+}: TimeBlockItemProps) {
   return (
     <div
       className={`flex items-center gap-3 px-4 py-3 rounded-lg border transition-all duration-200 hover:shadow-sm ${color}`}

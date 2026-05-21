@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { Calendar, Flame, Trophy, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Progress } from '@/components/ui/Progress';
@@ -7,11 +8,21 @@ import { useHabitStore } from '@/store/habitStore';
 
 export function HabitStats() {
   const habits = useHabitStore((s) => s.habits);
-  const completed = habits.filter((h) => h.completed).length;
-  const total = habits.length;
-  const totalStreak = habits.reduce((sum, h) => sum + h.streak, 0);
-  const bestStreak = Math.max(...habits.map((h) => h.bestStreak), 0);
-  const totalExp = habits.reduce((sum, h) => sum + h.experience, 0);
+
+  const { completed, total, totalStreak, bestStreak, totalExp } = useMemo(() => {
+    const completedCount = habits.filter((h) => h.completed).length;
+    const totalCount = habits.length;
+    const streakSum = habits.reduce((sum, h) => sum + h.streak, 0);
+    const best = Math.max(...habits.map((h) => h.bestStreak), 0);
+    const expSum = habits.reduce((sum, h) => sum + h.experience, 0);
+    return {
+      completed: completedCount,
+      total: totalCount,
+      totalStreak: streakSum,
+      bestStreak: best,
+      totalExp: expSum,
+    };
+  }, [habits]);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -37,10 +48,7 @@ export function HabitStats() {
         </div>
         <span className="text-xl font-bold text-foreground tracking-tight">
           {totalStreak}
-          <span className="text-sm font-normal text-text-secondary">
-            {' '}
-            days
-          </span>
+          <span className="text-sm font-normal text-text-secondary"> days</span>
         </span>
       </Card>
 
@@ -51,10 +59,7 @@ export function HabitStats() {
         </div>
         <span className="text-xl font-bold text-foreground tracking-tight">
           {bestStreak}
-          <span className="text-sm font-normal text-text-secondary">
-            {' '}
-            days
-          </span>
+          <span className="text-sm font-normal text-text-secondary"> days</span>
         </span>
       </Card>
 

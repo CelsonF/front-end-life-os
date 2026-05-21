@@ -1,35 +1,38 @@
-'use client';
-
-import { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { Suspense, lazy } from 'react';
 import { Shell } from '@/components/layout/Shell';
-import { Button } from '@/components/ui/Button';
-import { HabitStats } from '@/components/features/habits/HabitStats';
-import { HabitList } from '@/components/features/habits/HabitList';
-import { HabitForm } from '@/components/features/habits/HabitForm';
+
+const HabitsContent = lazy(
+  () =>
+    import('@/components/features/habits/HabitsContent').then((m) => ({
+      default: m.HabitsContent,
+    }))
+);
+
+function HabitsSkeleton() {
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="h-8 w-32 bg-hover rounded animate-pulse" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="h-24 bg-hover rounded-xl animate-pulse" />
+        ))}
+      </div>
+      <div className="space-y-2">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} className="h-14 bg-hover rounded-xl animate-pulse" />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function HabitsPage() {
-  const [showForm, setShowForm] = useState(false);
-
   return (
     <Shell>
       <div className="flex flex-col gap-6 p-6">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-foreground tracking-tight">Habits</h1>
-          <Button variant="gradient" onClick={() => setShowForm(true)} icon={<Plus size={16} />}>
-            New Habit
-          </Button>
-        </div>
-
-        <div className="animate-fade-in">
-          <HabitStats />
-        </div>
-
-        <div className="animate-fade-in" style={{ animationDelay: '50ms' }}>
-          <HabitList />
-        </div>
-
-        {showForm && <HabitForm onClose={() => setShowForm(false)} />}
+        <Suspense fallback={<HabitsSkeleton />}>
+          <HabitsContent />
+        </Suspense>
       </div>
     </Shell>
   );

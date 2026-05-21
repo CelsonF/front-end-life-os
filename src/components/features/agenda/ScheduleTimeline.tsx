@@ -3,14 +3,15 @@
 import { Calendar } from 'lucide-react';
 import { useTimeBlockStore } from '@/store/timeBlockStore';
 
+const SCHEDULE_START_HOUR = 8;
+const SCHEDULE_END_HOUR = 18;
+
 export function ScheduleTimeline() {
   const timeBlocks = useTimeBlockStore((s) => s.timeBlocks);
 
-  const startHour = 8;
-  const endHour = 18;
-
-  const hours = Array.from({ length: endHour - startHour }, (_, i) =>
-    String(startHour + i).padStart(2, '0')
+  const hours = Array.from(
+    { length: SCHEDULE_END_HOUR - SCHEDULE_START_HOUR },
+    (_, i) => String(SCHEDULE_START_HOUR + i).padStart(2, '0')
   );
 
   return (

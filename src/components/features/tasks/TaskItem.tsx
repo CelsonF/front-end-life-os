@@ -1,7 +1,7 @@
 import { Check } from 'lucide-react';
 import type { Priority } from '@/types';
 
-const priorityConfig: Record<Priority, { label: string; class: string }> = {
+const PRIORITY_CONFIG: Record<Priority, { label: string; class: string }> = {
   low: { label: 'Low', class: 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400' },
   medium: { label: 'Med', class: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400' },
   high: { label: 'High', class: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400' },
@@ -24,7 +24,7 @@ export function TaskItem({
   experience,
   onToggle,
 }: TaskItemProps) {
-  const p = priorityConfig[priority];
+  const priorityStyle = PRIORITY_CONFIG[priority];
 
   return (
     <div
@@ -36,6 +36,8 @@ export function TaskItem({
     >
       <button
         onClick={() => onToggle(id)}
+        aria-label={`${completed ? 'Mark incomplete' : 'Mark complete'}: ${title}`}
+        aria-pressed={completed}
         className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all duration-200 active:scale-90 ${
           completed
             ? 'bg-primary border-primary text-on-primary'
@@ -56,9 +58,9 @@ export function TaskItem({
       </span>
 
       <span
-        className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${p.class}`}
+        className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${priorityStyle.class}`}
       >
-        {p.label}
+        {priorityStyle.label}
       </span>
 
       <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 whitespace-nowrap">

@@ -1,14 +1,23 @@
 'use client';
 
+import { useMemo } from 'react';
 import { ListTodo } from 'lucide-react';
 import { useTaskStore } from '@/store/taskStore';
 import { TaskItem } from './TaskItem';
 
+const ANIMATION_STAGGER_MS = 30;
+
 export function TaskList() {
   const tasks = useTaskStore((s) => s.tasks);
   const toggleTask = useTaskStore((s) => s.toggleTask);
-  const pending = tasks.filter((t) => !t.completed);
-  const done = tasks.filter((t) => t.completed);
+  const pending = useMemo(
+    () => tasks.filter((t) => !t.completed),
+    [tasks]
+  );
+  const done = useMemo(
+    () => tasks.filter((t) => t.completed),
+    [tasks]
+  );
 
   return (
     <div className="flex flex-col gap-3">
@@ -29,7 +38,11 @@ export function TaskList() {
       ) : (
         <div className="flex flex-col gap-2">
           {pending.map((task, i) => (
-            <div key={task.id} className="animate-fade-in" style={{ animationDelay: `${i * 30}ms` }}>
+            <div
+              key={task.id}
+              className="animate-fade-in"
+              style={{ animationDelay: `${i * ANIMATION_STAGGER_MS}ms` }}
+            >
               <TaskItem {...task} onToggle={toggleTask} />
             </div>
           ))}

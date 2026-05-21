@@ -23,6 +23,7 @@ export function HabitItem({
 }: HabitItemProps) {
   return (
     <label
+      htmlFor={`habit-${id}`}
       className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 cursor-pointer ${
         completed
           ? 'bg-primary-50 dark:bg-primary-50/10'
@@ -30,9 +31,11 @@ export function HabitItem({
       }`}
     >
       <input
+        id={`habit-${id}`}
         type="checkbox"
         checked={completed}
         onChange={() => onToggle(id)}
+        aria-label={title}
         className="w-4 h-4 rounded-full border-zinc-300 dark:border-zinc-600 text-primary focus:ring-primary accent-primary transition-transform duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] active:scale-90"
       />
 

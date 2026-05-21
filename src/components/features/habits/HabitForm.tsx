@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useHabitStore } from '@/store/habitStore';
@@ -15,6 +15,19 @@ export function HabitForm({ onClose }: HabitFormProps) {
   const [description, setDescription] = useState('');
   const [icon, setIcon] = useState('✨');
   const [experience, setExperience] = useState(20);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    firstInputRef.current?.focus();
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [onClose]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,10 +43,22 @@ export function HabitForm({ onClose }: HabitFormProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in">
-      <div className="w-full max-w-md bg-surface border border-border rounded-xl p-6 shadow-xl animate-fade-in-up" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="habit-form-title"
+    >
+      <div
+        ref={modalRef}
+        className="w-full max-w-md bg-surface border border-border rounded-xl p-6 shadow-xl animate-fade-in-up"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-foreground">Create New Habit</h2>
+          <h2 id="habit-form-title" className="text-lg font-bold text-foreground">
+            Create New Habit
+          </h2>
           <button
             onClick={onClose}
             className="p-1 rounded hover:bg-hover text-text-secondary"
@@ -49,13 +74,13 @@ export function HabitForm({ onClose }: HabitFormProps) {
               Title
             </label>
             <input
+              ref={firstInputRef}
               id="habit-title"
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g., Morning meditation"
               className="px-3 py-2 text-sm bg-background border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              autoFocus
             />
           </div>
 

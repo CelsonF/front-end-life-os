@@ -1,13 +1,19 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useTimeBlockStore } from '@/store/timeBlockStore';
 import { TimeBlockItem } from './TimeBlockItem';
+
+const ANIMATION_STAGGER_MS = 30;
 
 export function TimeBlockList() {
   const timeBlocks = useTimeBlockStore((s) => s.timeBlocks);
   const deleteTimeBlock = useTimeBlockStore((s) => s.deleteTimeBlock);
 
-  const sorted = [...timeBlocks].sort((a, b) => a.start.localeCompare(b.start));
+  const sorted = useMemo(
+    () => [...timeBlocks].sort((a, b) => a.start.localeCompare(b.start)),
+    [timeBlocks]
+  );
 
   if (sorted.length === 0) {
     return (
@@ -21,11 +27,12 @@ export function TimeBlockList() {
   return (
     <div className="flex flex-col gap-2">
       {sorted.map((block, i) => (
-        <div key={block.id} className="animate-fade-in" style={{ animationDelay: `${i * 30}ms` }}>
-          <TimeBlockItem
-            {...block}
-            onDelete={deleteTimeBlock}
-          />
+        <div
+          key={block.id}
+          className="animate-fade-in"
+          style={{ animationDelay: `${i * ANIMATION_STAGGER_MS}ms` }}
+        >
+          <TimeBlockItem {...block} onDelete={deleteTimeBlock} />
         </div>
       ))}
     </div>
